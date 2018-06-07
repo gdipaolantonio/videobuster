@@ -1,0 +1,24 @@
+{
+  "name": "video_buster",
+  "version": "1.0.0",
+  "description": "a video renting e-commerce event sourced and cqrs sandbox",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdipaolantonio/videobuster.git"
+  },
+  "keywords": [
+    "video",
+    "rent",
+    "sandbox"
+  ],
+  "author": "The Doctor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdipaolantonio/videobuster/issues"
+  },
+  "homepage": "https://github.com/gdipaolantonio/videobuster#readme"
+}
