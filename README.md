@@ -1,2 +1,2 @@
 # videobuster
-Sandbox project for DDD/CQRS/Event Sourcing class
+Sandbox project for DDD/CQRS/Event Sourcing class in TypeScript
