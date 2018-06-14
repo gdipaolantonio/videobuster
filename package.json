@@ -26,5 +26,9 @@
   "dependencies": {
     "typescript": "^2.9.1",
     "ts-node": "^6.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.1.0",
+    "ts-jest": "^22.4.6"
   }
 }
