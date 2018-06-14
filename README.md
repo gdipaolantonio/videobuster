@@ -10,10 +10,10 @@ $ npm install
 
 Run:
 ```
-$ npm run tsc
+$ npm run dev
 ```
 
 Run tests:
 ```
-$ npm run test
+$ npm test
 ```
