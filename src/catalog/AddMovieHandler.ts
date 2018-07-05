@@ -12,6 +12,6 @@ export default class AddMovieHandler implements CommandHandler {
   }
 
   handle(command: AddMovieCommand) {
-    this.eventStore.append(new MovieAddedEvent());
+    this.eventStore.append(new MovieAddedEvent(command.title));
   }
 }

@@ -4,7 +4,7 @@
   "description": "a video renting e-commerce event sourced and cqrs sandbox",
   "main": "index.js",
   "scripts": {
-    "test": "node_modules/.bin/jest --watch",
+    "test": "node_modules/.bin/jest --watchAll",
     "tsc": "tsc",
     "dev": "./node_modules/ts-node/dist/bin.js src/index.ts"
   },
