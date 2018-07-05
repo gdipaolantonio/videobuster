@@ -4,6 +4,7 @@ import InMemoryEventStore from "../../eventstore/InMemoryEventStore";
 import MovieAddedEvent from "../MovieAddedEvent";
 import EventStore from "../../eventstore/EventStore";
 import MovieAlreadyPresentException from "../MovieAlreadyPresentException";
+import MovieRemovedEvent from "../MovieRemovedEvent";
 
 /*
  * - Empty command and empty event
@@ -29,5 +30,17 @@ describe('AddMovieHandler', () => {
     expect(() => { handler.handle(new AddMovieCommand("Star Wars")) }).toThrow(MovieAlreadyPresentException);
 
     expect(eventStore.list().length).toBe(1);
+  });
+
+  it('should allow the insert of a movie with the same title after its removal', () => {
+    const eventStore = new InMemoryEventStore();
+    eventStore.append(new MovieAddedEvent("Star Wars"));
+    eventStore.append(new MovieRemovedEvent("Star Wars"));
+
+    const handler = new AddMovieHandler(eventStore);
+
+    handler.handle(new AddMovieCommand("Star Wars"));
+
+    expect(eventStore.list().length).toBe(3);
   });
 });
