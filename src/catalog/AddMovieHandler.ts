@@ -6,6 +6,7 @@ import Event from "../Event";
 import MovieAlreadyPresentException from "./MovieAlreadyPresentException";
 import MovieRemovedEvent from "./MovieRemovedEvent";
 import Movie from "./Movie";
+import Catalog from "./Catalog";
 
 export default class AddMovieHandler implements CommandHandler {
 
@@ -20,24 +21,8 @@ export default class AddMovieHandler implements CommandHandler {
   handle(command: AddMovieCommand) {
     const events : Array<Event> = this.eventStore.list();
 
-    events
-      .forEach(event => {
-        if (event instanceof MovieAddedEvent) {
-          this.movies[event.title] = new Movie(event.title);
-        }
+    const event = Catalog.from(events).process(command);
 
-        if (event instanceof MovieRemovedEvent) {
-          if (this.movies[event.title]) {
-            delete this.movies[event.title];
-          }
-        }
-      });
-
-    if (this.movies.hasOwnProperty(command.title)) {
-      throw new MovieAlreadyPresentException(command.title);
-    }
-
-    this.movies[command.title] = new Movie(command.title);
-    this.eventStore.append(new MovieAddedEvent(command.title));
+    this.eventStore.append(event);
   }
 }
