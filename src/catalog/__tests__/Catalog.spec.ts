@@ -54,4 +54,19 @@ describe('Catalog', () => {
           .toEqual(new MovieAddedEventV2('Star Wars', 2));
     });
   });
+
+  describe('when a movie (v2) is already in the catalog', () => {
+    describe('and an AddMovieCommand is processed', () => {
+      it('should raise an exception', () => {
+        const catalog = Catalog.from([
+          new MovieAddedEventV2("Star Wars", 10)
+        ]);
+
+        expect(() => {
+          catalog.process(new AddMovieCommand("Star Wars", 10));
+        })
+          .toThrow(MovieAlreadyPresentException);
+      });
+    });
+  });
 });

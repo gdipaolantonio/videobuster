@@ -29,7 +29,7 @@ export default class Catalog {
 
     let movies = {...this.movies};  // Spread operator
 
-    if (event instanceof MovieAddedEvent) {
+    if (event instanceof MovieAddedEvent || event instanceof MovieAddedEventV2) {
       movies[event.title] = new Movie(event.title);
     }
 
