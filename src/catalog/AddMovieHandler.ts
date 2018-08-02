@@ -11,11 +11,9 @@ import Catalog from "./Catalog";
 export default class AddMovieHandler implements CommandHandler {
 
   private readonly eventStore: EventStore;
-  private readonly movies: any
 
   constructor(eventStore: EventStore) {
     this.eventStore = eventStore;
-    this.movies = {};
   }
 
   handle(command: AddMovieCommand) {
