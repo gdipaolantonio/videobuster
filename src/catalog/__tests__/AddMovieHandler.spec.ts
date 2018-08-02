@@ -19,7 +19,7 @@ describe('AddMovieHandler', () => {
 
     handler.handle(new AddMovieCommand("Star Wars"));
 
-    expect(eventStore.list()).toContainEqual(new MovieAddedEvent("Star Wars"));
+    expect(eventStore.list()).toContainEqual(new MovieAddedEventV2("Star Wars", 0));
   });
 
   it('should discard command if movie already present', () => {

@@ -12,7 +12,7 @@ describe('Catalog', () => {
         const catalog = Catalog.from([]);
 
         expect(catalog.process(new AddMovieCommand("Star Wars")))
-          .toEqual(new MovieAddedEvent('Star Wars'));
+          .toEqual(new MovieAddedEventV2('Star Wars', 0));
       });
     });
   });
@@ -41,7 +41,7 @@ describe('Catalog', () => {
         ]);
 
         expect(catalog.process(new AddMovieCommand("Star Wars")))
-          .toEqual(new MovieAddedEvent('Star Wars'));
+          .toEqual(new MovieAddedEventV2('Star Wars', 0));
       });
     });
   });

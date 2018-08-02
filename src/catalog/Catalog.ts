@@ -31,6 +31,7 @@ export default class Catalog {
 
     if (event instanceof MovieAddedEvent || event instanceof MovieAddedEventV2) {
       movies[event.title] = new Movie(event.title);
+      // TODO Consider availability (for rent use case)
     }
 
     if (event instanceof MovieRemovedEvent) {
@@ -45,10 +46,6 @@ export default class Catalog {
   public process(command : AddMovieCommand) : Event {
     if (this.movies.hasOwnProperty(command.title)) {
       throw new MovieAlreadyPresentException(command.title);
-    }
-
-    if (command.availability === 0) {
-      return new MovieAddedEvent(command.title);
     }
 
     return new MovieAddedEventV2(command.title, command.availability);
