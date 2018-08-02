@@ -4,6 +4,7 @@ import MovieRemovedEvent from "./MovieRemovedEvent";
 import Movie from "./Movie";
 import AddMovieCommand from "./AddMovieCommand";
 import MovieAlreadyPresentException from "./MovieAlreadyPresentException";
+import MovieAddedEventV2 from "./MovieAddedEventV2";
 
 export default class Catalog {
 
@@ -46,6 +47,10 @@ export default class Catalog {
       throw new MovieAlreadyPresentException(command.title);
     }
 
-    return new MovieAddedEvent(command.title);
+    if (command.availability === 0) {
+      return new MovieAddedEvent(command.title);
+    }
+
+    return new MovieAddedEventV2(command.title, command.availability);
   }
 }

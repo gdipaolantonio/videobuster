@@ -5,6 +5,7 @@ import MovieAddedEvent from "../MovieAddedEvent";
 import EventStore from "../../eventstore/EventStore";
 import MovieAlreadyPresentException from "../MovieAlreadyPresentException";
 import MovieRemovedEvent from "../MovieRemovedEvent";
+import MovieAddedEventV2 from "../MovieAddedEventV2";
 
 /*
  * - Empty command and empty event
@@ -42,5 +43,18 @@ describe('AddMovieHandler', () => {
     handler.handle(new AddMovieCommand("Star Wars"));
 
     expect(eventStore.list().length).toBe(3);
+  });
+
+  it('should allow the insert of a movie with availability', () => {
+    const command = new AddMovieCommand("Star Wars", 2);
+    const eventStore = new InMemoryEventStore();
+
+    const handler = new AddMovieHandler(eventStore);
+
+    handler.handle(command);
+
+    expect(eventStore.list()).toContainEqual(
+      new MovieAddedEventV2("Star Wars", 2)
+    );
   });
 });
